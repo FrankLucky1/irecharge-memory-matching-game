@@ -67,7 +67,7 @@ const Page = () => {
         {localBestScore !== 0 ? (
           localClickCount <= localBestScore ? (
             <div className="flex flex-col items-center justify-center w-full gap-14">
-              {localClickCount === localBestScore ? (
+              {localClickCount !== localBestScore ? (
                 <h3 className="text-center text-xl">
                   That was splendid!!!... This score is equal to your best
                   score, here&apos;s your gift! 🎁
