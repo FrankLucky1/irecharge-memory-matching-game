@@ -187,6 +187,7 @@ export default function Home() {
           </div>
         )}
         <button
+        disabled={loading}
           onClick={() => setRefresh(refresh + 1)}
           className="bg-green-600 rounded-xl text-white px-6 py-2 cursor-pointer"
         >
