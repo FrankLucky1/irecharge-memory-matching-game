@@ -14,12 +14,6 @@ const Page = () => {
 
   const { localClickCount, localBestScore } = useAppContext();
 
-  console.log(
-    "localClickCount:",
-    localClickCount,
-    "localBestScore:",
-    localBestScore
-  );
 
   useEffect(() => {
     const handleResize = () => {
