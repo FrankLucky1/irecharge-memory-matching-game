@@ -1,11 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import GiftBoxAnimation from "@/components/GiftBoxAnimation";
 import ReactConfetti from "react-confetti";
 import { useAppContext } from "../context/AppContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import GiftBoxAnimation from "@/components/GiftBoxAnimation";
 
 const Page = () => {
   const [windowSize, setWindowSize] = useState({
@@ -16,15 +14,26 @@ const Page = () => {
 
   const { localClickCount, localBestScore } = useAppContext();
 
+  console.log(
+    "localClickCount:",
+    localClickCount,
+    "localBestScore:",
+    localBestScore
+  );
+
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize({ width: window?.innerWidth, height: window?.innerHeight });
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     };
+
+    // Initialize window size on mount
+    handleResize();
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
-    <div className="bg-white h-screen w-full flex items-center justify-center text-slate-700 relative overflow-hidden">
+    <div className="bg-white h-screen w-full flex items-center justify-center text-white relative overflow-hidden animated-gradient">
       {/* shows the confetti when user has a highscore */}
       {localClickCount <= localBestScore && (
         <ReactConfetti
@@ -67,18 +76,17 @@ const Page = () => {
         {localBestScore !== 0 ? (
           localClickCount <= localBestScore ? (
             <div className="flex flex-col items-center justify-center w-full gap-14">
+              {/* this operation compares your previous best score with the current score and show you different messages with respect to the output  */}
               {localClickCount !== localBestScore ? (
                 <h3 className="text-center text-xl">
-                  That was splendid!!!... This score is equal to your best
-                  score, here&apos;s your gift! 🎁
+                  That was splendid!!!... This score is equal to your best score
                 </h3>
               ) : (
-                <h3 className="text-center text-xl">
+                <h3 className="text-center text-xl lg:text-2xl">
                   That was splendid!!!...you scored a better score than your
-                  last attempt, here&apos;s your gift! 🎁
+                  last attempt <br /> here&apos;s your gift! 🎁
                 </h3>
               )}
-              <GiftBoxAnimation />
             </div>
           ) : (
             <h3 className="text-center text-xl">

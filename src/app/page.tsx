@@ -107,16 +107,18 @@ export default function Home() {
   }, [matchedCards]);
 
   return (
-    <div className="flex items-center justify-center flex-col w-full min-h-screen bg-white">
-      <div className="bg-white h-[80%] w-[80%] py-12 flex flex-col gap-6 items-center justify-center">
-        <h1 className="capitalize text-black font-bold text-2xl text-center lg:text-4xl">
+    <div className="flex items-center justify-center flex-col w-full min-h-screen animated-gradient">
+      <div className=" h-[80%] w-[80%] py-12 flex flex-col gap-6 items-center justify-center">
+        <h1 className="capitalize text-white font-bold text-2xl text-center lg:text-4xl">
           IRecharge Memory Matching Game
         </h1>
         <div className="flex justify-between items-center w-[300px] lg:w-[400px] mx-auto">
-          <p className="text-slate-500">
+          <p className="text-white font-semibold md:text-xl">
             Your best score is: {bestScore || 0}{" "}
           </p>
-          <p className={`text-slate-500`}>Current click: {clickCount * 2}</p>
+          <p className={`text-white font-semibold md:text-xl`}>
+            Current click: {clickCount * 2}
+          </p>
         </div>
         {/* when loading it shows an animated box */}
         {loading ? (
@@ -134,7 +136,7 @@ export default function Home() {
                 }}
               >
                 <div
-                  className={`relative w-full h-full transition-transform duration-700 transform ${
+                  className={`relative w-full h-full transition-transform duration-700 transform shadow-lg ${
                     isFlipped(index) ? "rotate-y-180" : ""
                   }`}
                   style={{
@@ -143,7 +145,7 @@ export default function Home() {
                 >
                   {/* backface of the cards before they're flipped */}
                   <div
-                    className="absolute w-full h-full overflow-clip text-black flex items-center justify-center text-center rounded-md lg:rounded-2xl backface-hidden"
+                    className="absolute w-full h-full overflow-clip text-white flex items-center justify-center text-center rounded-md lg:rounded-2xl backface-hidden"
                     style={{
                       backfaceVisibility: "hidden",
                     }}
@@ -187,7 +189,7 @@ export default function Home() {
           </div>
         )}
         <button
-        disabled={loading}
+          disabled={loading}
           onClick={() => setRefresh(refresh + 1)}
           className="bg-green-600 rounded-xl text-white px-6 py-2 cursor-pointer"
         >
